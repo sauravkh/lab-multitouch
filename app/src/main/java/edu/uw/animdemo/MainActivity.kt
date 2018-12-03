@@ -13,6 +13,7 @@ import android.view.GestureDetector
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.content.Context
 import android.view.MotionEvent
 
 class MainActivity : AppCompatActivity() {
@@ -36,6 +37,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         //Log.v(TAG, event.toString());
+
+        val pointerIndex = MotionEventCompat.getActionIndex(event)
+        val pointer = MotionEventCompat.getPointerId(event, pointerIndex)
+        val touches: MutableList<Int> = mutableListOf()
+
+
 
         val gesture = mDetector!!.onTouchEvent(event) //ask the detector to handle instead
         //if(gesture) return true; //if we don't also want to handle
@@ -76,6 +83,10 @@ class MainActivity : AppCompatActivity() {
             -> return super.onTouchEvent(event)
             else -> return super.onTouchEvent(event)
         }
+    }
+
+    fun addTouch(pointId: Int, x: Int, y: Int) {
+        DrawingSurfaceView(applicationContext, )
     }
 
     private inner class MyGestureListener : GestureDetector.SimpleOnGestureListener() {
